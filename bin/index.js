@@ -145,7 +145,7 @@ const _require = function () {
     const filename = this.filename;
     try {
         let requiredFileName = arguments[0];
-        if (filename && filename.indexOf(cwd) !== 0) {
+        if (filename && (filename.indexOf(cwd) !== 0 || filename.indexOf(__dirname) === 0)) {
             requiredFileName = getFileAbsolutePath(arguments[0]);
             arguments[0] = requiredFileName;
         }
@@ -155,9 +155,9 @@ const _require = function () {
             autoreload_objs[requiredFileName] = m;
         } else {
             const dir = path.dirname(filename);
-            if (filename.indexOf(cwd + '/node_modules/') == 0) return m;
+            if (filename.indexOf(cwd + '/node_modules/') === 0) return m;
 
-            if (requiredFileName.indexOf('/') == 0) {
+            if (requiredFileName.indexOf('/') === 0) {
                 autoreload_objs[requiredFileName] = m;
             } else {
                 const finalPath = path.join(dir, requiredFileName);
@@ -169,7 +169,7 @@ const _require = function () {
         lastTimer = setTimeout(refreshWatchFiles, 1000);
         return m;
     } catch (err) {
-        if (filename && filename.indexOf(cwd + '/node_modules/') == 0) {
+        if (filename && filename.indexOf(cwd + '/node_modules/') === 0) {
             throw err;
         }
 
