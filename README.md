@@ -6,7 +6,7 @@ using npm:
 ```shell
 npm install -g liverepl
 ```
-And nodemon will be installed globally to your system path.
+And liverepl will be installed globally to your system path.
 
 # Usage
 ```shell
