@@ -1,6 +1,6 @@
 {
   "name": "liverepl",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A power node-repl which will auto reload runtime if required file is modified, inspired by ipython autoreload feature.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
