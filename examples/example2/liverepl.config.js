@@ -1,12 +1,12 @@
 module.exports = {
-    install: {
+    installs: {
         m1_: './a.js',
         m2_: './m'
     },
-    constant: {
+    constants: {
         constant1: 'aaaaa',
     },
     ignores: [
         './b'
     ],
-};
+}

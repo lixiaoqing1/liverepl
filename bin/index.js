@@ -7,19 +7,14 @@ const fs = require('fs');
 const path = require('path');
 const cwd = process.cwd();
 
-let config = {
-    ignores: [],
-    constants: {},
-    installs: {},
-};
-
-try {
-    config = require(`${cwd}/liverepl.config`);
-} catch (err) {
+let config = {};
+const configFile = `${cwd}/liverepl.config.js`;
+if (fs.existsSync(configFile)) {
+    config = require(configFile);
 }
 
 config.ignores = config.ignores || [];
-config.constants = config.constants || [];
+config.constants = config.constants || {};
 config.installs = config.installs || {};
 
 //https://github.com/gulpjs/gulp/issues/2460
