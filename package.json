@@ -1,0 +1,29 @@
+{
+  "name": "liverepl",
+  "version": "1.0.5",
+  "description": "A power node-repl which will auto reload runtime if required file is modified, inspired by ipython autoreload feature.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "liverepl": "bin/index.js"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lixiaoqing1/liverepl.git"
+  },
+  "keywords": [
+    "repl",
+    "autoreload",
+    "effective",
+    "development"
+  ],
+  "author": "lixiaoqing",
+  "license": "ISC",
+  "dependencies": {
+    "gaze": "^1.1.3"
+  }
+}
