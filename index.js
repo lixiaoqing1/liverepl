@@ -1,4 +1,5 @@
 #!/usr/bin/env node --experimental-repl-await --trace-deprecation
+require("@babel/register");
 const repl = require('repl');
 const gaze = require('gaze');
 const Module = require('module');
@@ -37,10 +38,10 @@ const modules = [];
 
 let watchPattern = {};
 
-function getFileAbsolutePath(file) {
+function getFileAbsolutePath(file, parentPath) {
     let res = file;
     if (file.indexOf('./') === 0) {
-        res = path.join(cwd, file);
+        res = path.join(parentPath || cwd, file);
     }
     return res;
 }
@@ -145,7 +146,10 @@ const _require = function () {
     const filename = this.filename;
     try {
         let requiredFileName = arguments[0];
-        if (filename && (filename.indexOf(cwd) !== 0 || filename.indexOf(__dirname) === 0)) {
+        if (filename && filename.indexOf(__dirname) === 0 && filename !== __filename) {
+            requiredFileName = getFileAbsolutePath(arguments[0], path.dirname(filename));
+            arguments[0] = requiredFileName;
+        } else if (filename && filename.indexOf(cwd) !== 0) {
             requiredFileName = getFileAbsolutePath(arguments[0]);
             arguments[0] = requiredFileName;
         }
